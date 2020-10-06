@@ -29,10 +29,11 @@ app.listen(config.port, () => {
     onStart(config.port);
 });
 
-// Main page
+// Routes
+app.use('/partials', express.static('./partials/'))
 
 // 404
 app.use('/', (req, res) => {
     res.status(404);
-    res.end(ejs.render(read('/errors/404.ejs') ?? 'Error 404 not found', {}));
+    res.end(ejs.render(read('./errors/404.ejs') || 'Error 404 not found', {}));
 });
